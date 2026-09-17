@@ -107,7 +107,7 @@ final class LicenseService: ObservableObject {
             }
             await MainActor.run {
                 isChecking = false
-                lastError = (error as LocalizedError)?.errorDescription ?? "Network error. Check your connection."
+                lastError = (error as? LocalizedError)?.errorDescription ?? "Network error. Check your connection."
             }
             return false
         }
