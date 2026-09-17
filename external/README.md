@@ -101,7 +101,7 @@ Do not publish logs, app containers, cookies, account databases, or patch payloa
 
 ## Credits
 
-3105 is developed and designed by [YangJiii](https://x.com/duongduong0908).
+3105 is developed and designed by **Jaki x Zerion x Zain** ([@sanglegenda2k25](https://github.com/sanglegenda2k25/ios)).
 
 Special thanks to [0xjohnny](https://x.com/0xjohnny) for [FilzaSlop](https://github.com/0xjohnnydev/FilzaSlop) and related research:
 

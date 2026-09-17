@@ -70,7 +70,7 @@ Những build không có trong bảng sẽ được đánh dấu là không hỗ
 
 ## Tác giả và ghi công
 
-3105 được phát triển và thiết kế bởi [YangJiii](https://x.com/duongduong0908). Xem [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) để biết các dự án và nhà phát triển nền tảng đã được sử dụng/tham khảo.
+3105 được phát triển và thiết kế bởi **Jaki x Zerion x Zain** ([@sanglegenda2k25](https://github.com/sanglegenda2k25/ios)). Xem [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) để biết các dự án và nhà phát triển nền tảng đã được sử dụng/tham khảo.
 
 ## Giấy phép
 

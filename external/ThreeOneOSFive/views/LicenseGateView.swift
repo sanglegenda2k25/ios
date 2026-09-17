@@ -196,20 +196,20 @@ struct KeyEntryView: View {
                                 .frame(width: 90, height: 90)
                                 .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                         } else {
-                            Text("KX")
+                            Text("ZX")
                                 .font(.system(size: 36, weight: .black))
                                 .foregroundStyle(.blue)
                         }
                     }
 
                     VStack(spacing: 4) {
-                        Text("KX TEAM EXTERNAL IOS")
+                        Text("ZX TEAM")
                             .font(.system(size: 20, weight: .black))
                             .foregroundStyle(.white)
-                        Text("</> KX TEAM")
+                        Text("</> Jaki x Zerion x Zain")
                             .font(.system(size: 13, weight: .medium))
                             .foregroundStyle(Color(white: 0.55))
-                        Text("Developer @KarenTzy")
+                        Text("Jaki x Zerion x Zain")
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundStyle(AppTheme.accent)
                         Text("Enter your license key to continue")

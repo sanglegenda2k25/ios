@@ -1,6 +1,6 @@
 # Third-party notices and credits
 
-3105 is developed and designed by [YangJiii](https://x.com/duongduong0908). It also incorporates ideas, formats, research, or implementation foundations from the following community work.
+3105 is developed and designed by **Jaki x Zerion x Zain**. It also incorporates ideas, formats, research, or implementation foundations from the following community work.
 
 | Project/person | Contribution acknowledged by 3105 | Upstream |
 | --- | --- | --- |

@@ -40,13 +40,15 @@ final class LicenseService: ObservableObject {
     @Published var isChecking = false
     @Published var lastError: String?
 
-    private let stateKey = "regsxd_license_state"
+    private let stateKey = "jxz_license_state"
+    private let legacyStateKey = "regsxd_license_state"
     private let deviceID: String = {
-        if let saved = UserDefaults.standard.string(forKey: "regsxd_device_id") {
+        if let saved = UserDefaults.standard.string(forKey: "jxz_device_id")
+            ?? UserDefaults.standard.string(forKey: "regsxd_device_id") {
             return saved
         }
         let id = UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString
-        UserDefaults.standard.set(id, forKey: "regsxd_device_id")
+        UserDefaults.standard.set(id, forKey: "jxz_device_id")
         return id
     }()
 
@@ -232,6 +234,12 @@ final class LicenseService: ObservableObject {
     }
 
     private func loadSavedState() {
+        // Migrasi sekali dari key lama, lalu hapus key lama.
+        if UserDefaults.standard.data(forKey: stateKey) == nil,
+           let legacy = UserDefaults.standard.data(forKey: legacyStateKey) {
+            UserDefaults.standard.set(legacy, forKey: stateKey)
+            UserDefaults.standard.removeObject(forKey: legacyStateKey)
+        }
         guard let data = UserDefaults.standard.data(forKey: stateKey),
               let state = try? JSONDecoder().decode(LicenseState.self, from: data),
               state.isValid else {

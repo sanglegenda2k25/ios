@@ -140,7 +140,7 @@ struct ContentView: View {
                     )
                 }
             }
-            .navigationTitle("KX TEAM EXTERNAL IOS")
+            .navigationTitle("ZX TEAM")
             .navigationSplitViewColumnWidth(min: 210, ideal: 240, max: 300)
         } detail: {
             sectionContent(selectedVisibleSection)
@@ -296,10 +296,10 @@ private struct DashboardView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack(spacing: 0) {
-                        Text("KX TEAM EXTERNAL IOS")
+                        Text("ZX TEAM")
                             .font(.system(size: 13, weight: .black))
                             .foregroundStyle(AppTheme.accent)
-                        Text("by </> KX TEAM  ·  Developer @KarenTzy")
+                        Text("Jaki x Zerion x Zain")
                             .font(.system(size: 9, weight: .medium))
                             .foregroundStyle(AppTheme.accent.opacity(0.6))
                     }
@@ -347,27 +347,27 @@ private struct DashboardView: View {
                             .frame(width: 62, height: 62)
                             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                     } else {
-                        Text("KX")
+                        Text("ZX")
                             .font(.system(size: 22, weight: .black))
                             .foregroundStyle(AppTheme.accent)
                     }
                 }
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("KX TEAM")
+                    Text("ZX TEAM")
                         .font(.system(size: 20, weight: .black))
                         .foregroundStyle(.white)
-                    Text("EXTERNAL IOS")
+                    Text("JAKI X ZERION X ZAIN")
                         .font(.system(size: 11, weight: .bold))
                         .foregroundStyle(AppTheme.accent)
                         .kerning(2)
                     HStack(spacing: 4) {
-                        Text("by </> KX TEAM")
+                        Text("by </> ZX TEAM")
                             .font(.system(size: 10))
                             .foregroundStyle(Color(white: 0.45))
                         Text("·")
                             .foregroundStyle(Color(white: 0.3))
-                        Text("@KarenTzy")
+                        Text("@sanglegenda2k25")
                             .font(.system(size: 10, weight: .semibold))
                             .foregroundStyle(AppTheme.accent.opacity(0.8))
                     }

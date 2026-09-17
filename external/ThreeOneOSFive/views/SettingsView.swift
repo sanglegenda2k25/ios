@@ -14,7 +14,7 @@ struct SettingsView: View {
                         AppLogo()
 
                         VStack(alignment: .leading, spacing: 3) {
-                            Text("KX TEAM EXTERNAL IOS").font(.headline)
+                            Text("ZX TEAM").font(.headline)
                             Text(language.text("common.version", appVersion))
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
@@ -68,20 +68,15 @@ struct SettingsView: View {
                     creditsRow(
                         name: "GitHub",
                         role: language.text("social.github_role"),
-                        url: "https://github.com/YangJiiii/3105"
-                    )
-                    creditsRow(
-                        name: "Cộng Đồng IOSVN",
-                        role: language.text("social.iosvn_role"),
-                        url: "https://t.me/ioscrackvn"
+                        url: "https://github.com/sanglegenda2k25/ios"
                     )
                 }
 
                 Section(language.text("settings.credits")) {
                     creditsRow(
-                        name: "</> KX TEAM",
-                        role: language.text("credit.yangjiii"),
-                        url: "https://github.com/YangJiiii/3105"
+                        name: "</> Jaki x Zerion x Zain",
+                        role: language.text("credit.devteam"),
+                        url: "https://github.com/sanglegenda2k25/ios"
                     )
                     creditsRow(
                         name: "0xjohnnydev",
