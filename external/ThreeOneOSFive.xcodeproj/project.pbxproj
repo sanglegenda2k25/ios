@@ -62,8 +62,6 @@
 		3105G202 /* ZIPArchiveExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105G102; };
 		3105G203 /* PatchWorkspaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105G103; };
 		3105H200 /* AppTabNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105H100; };
-		3105X100 /* LicenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105X001; };
-		3105X101 /* LicenseGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105X002; };
 		3105X104 /* patches folder in Resources */ = {isa = PBXBuildFile; fileRef = 3105X004; };
 		3105X102 /* InjectMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105X003; };
 		3105Y100 /* InjectShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105Y001; };
@@ -152,8 +150,6 @@
 		3105G102 /* ZIPArchiveExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZIPArchiveExtractor.swift; sourceTree = "<group>"; };
 		3105G103 /* PatchWorkspaceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchWorkspaceService.swift; sourceTree = "<group>"; };
 		3105H100 /* AppTabNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigationState.swift; sourceTree = "<group>"; };
-		3105X001 /* LicenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseService.swift; sourceTree = "<group>"; };
-		3105X002 /* LicenseGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseGateView.swift; sourceTree = "<group>"; };
 		3105X003 /* InjectMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectMenuView.swift; sourceTree = "<group>"; };
 		3105Y001 /* InjectShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectShared.swift; sourceTree = "<group>"; };
 		3105Y002 /* ExtraMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraMenuView.swift; sourceTree = "<group>"; };
@@ -228,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				3105A098 /* DesignSystem.swift */,
-				3105X002 /* LicenseGateView.swift */,
 				3105X003 /* InjectMenuView.swift */,
 				3105Y001 /* InjectShared.swift */,
 				3105Y002 /* ExtraMenuView.swift */,
@@ -271,7 +266,6 @@
 				3105B120 /* PatchProjectStore.swift */,
 				3105G103 /* PatchWorkspaceService.swift */,
 				3105H100 /* AppTabNavigationState.swift */,
-				3105X001 /* LicenseService.swift */,
 				3105C100 /* PatchDraftService.swift */,
 				3105C101 /* PatchDraftCoordinator.swift */,
 				3105E100 /* LimitedCleanerService.swift */,
@@ -431,8 +425,6 @@
 				3105H200,
 				3105I200,
 				3105I201,
-				3105X100,
-				3105X101,
 				3105X102,
 				3105Y100,
 				3105Y101,

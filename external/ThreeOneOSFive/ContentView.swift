@@ -258,11 +258,8 @@ private extension AppSection {
 private struct DashboardView: View {
     @Environment(\.appLanguage) private var language
     @EnvironmentObject private var appState: AppState
-    @StateObject private var license = LicenseService.shared
     @State private var showSettings = false
     @State private var showLogs = false
-    @State private var showLicenseKey = false
-    @State private var showLogoutConfirm = false
     @Binding var cleanerEnabled: Bool
     @Binding var wallpapersEnabled: Bool
     let wallpapersSupported: Bool
@@ -276,11 +273,6 @@ private struct DashboardView: View {
                     VStack(spacing: 16) {
                         // MARK: Hero Brand Card
                         heroBrandCard
-
-                        // MARK: License Card
-                        if let state = license.licenseState {
-                            licenseCard(state)
-                        }
 
                         // MARK: Device Card
                         deviceCard
@@ -304,14 +296,6 @@ private struct DashboardView: View {
                             .foregroundStyle(AppTheme.accent.opacity(0.6))
                     }
                 }
-            }
-            .confirmationDialog("Logout?", isPresented: $showLogoutConfirm, titleVisibility: .visible) {
-                Button("Logout", role: .destructive) {
-                    LicenseService.shared.logout()
-                }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("Your license key will need to be re-entered.")
             }
         }
     }
@@ -379,87 +363,6 @@ private struct DashboardView: View {
             }
             .padding(18)
         }
-    }
-
-    // MARK: License Card
-    private func licenseCard(_ state: LicenseState) -> some View {
-        VStack(spacing: 0) {
-            // Header
-            sectionHeader(icon: "key.fill", title: "LICENSE")
-
-            VStack(spacing: 1) {
-                // Key row
-                infoRow {
-                    Image(systemName: "key.fill")
-                        .foregroundStyle(AppTheme.accent)
-                        .frame(width: 20)
-                    if showLicenseKey {
-                        Text(state.key)
-                            .font(.system(size: 12, weight: .medium, design: .monospaced))
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                            .truncationMode(.middle)
-                    } else {
-                        Text("••••-••••-••••-••••")
-                            .font(.system(size: 13, weight: .medium, design: .monospaced))
-                            .foregroundStyle(Color(white: 0.5))
-                    }
-                    Spacer()
-                    Button { showLicenseKey.toggle() } label: {
-                        Image(systemName: showLicenseKey ? "eye.slash" : "eye")
-                            .font(.caption)
-                            .foregroundStyle(Color(white: 0.4))
-                    }
-                    .buttonStyle(.plain)
-                }
-
-                // Expiry row
-                infoRow {
-                    Image(systemName: "calendar.badge.clock")
-                        .foregroundStyle(state.daysRemaining <= 1 ? .red : .green)
-                        .frame(width: 20)
-                    Text("Expired")
-                        .foregroundStyle(Color(white: 0.55))
-                        .font(.system(size: 13))
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 1) {
-                        Text(state.expiresAt, style: .date)
-                            .font(.system(size: 12).monospacedDigit())
-                            .foregroundStyle(.white)
-                        Text("\(state.daysRemaining) day\(state.daysRemaining == 1 ? "" : "s") remaining")
-                            .font(.system(size: 11))
-                            .foregroundStyle(state.daysRemaining <= 1 ? .red : .green)
-                    }
-                }
-
-                // Logout
-                Button {
-                    showLogoutConfirm = true
-                } label: {
-                    HStack(spacing: 8) {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                            .font(.system(size: 13))
-                        Text("Logout / Change Key")
-                            .font(.system(size: 13, weight: .semibold))
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 11))
-                            .foregroundStyle(Color(white: 0.3))
-                    }
-                    .foregroundStyle(AppTheme.accent)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 13)
-                    .background(Color(white: 0.06))
-                }
-                .buttonStyle(.plain)
-            }
-        }
-        .background(Color(white: 0.07))
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color(white: 0.12), lineWidth: 1)
-        )
     }
 
     // MARK: Device Card
