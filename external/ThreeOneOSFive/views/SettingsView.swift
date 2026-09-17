@@ -48,16 +48,7 @@ struct SettingsView: View {
                     LabeledContent("iOS 17", value: ExploitSupportPolicy.verifiedIOS17Range)
                     LabeledContent("iOS 18", value: ExploitSupportPolicy.verifiedIOS18Range)
                     LabeledContent("iOS 26", value: ExploitSupportPolicy.verifiedIOS26Range)
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("iOS 27.0")
-                            .font(.body)
-                        ForEach(ExploitSupportPolicy.verifiedIOS27Builds, id: \.build) { version in
-                            Text(versionLabel(version))
-                            .font(.caption.monospaced())
-                            .foregroundStyle(.secondary)
-                        }
-                    }
-                    .padding(.vertical, 2)
+                    LabeledContent("iOS 27", value: ExploitSupportPolicy.verifiedIOS27Range)
                 } header: {
                     Text(language.text("settings.verified_versions"))
                 } footer: {
@@ -116,24 +107,6 @@ struct SettingsView: View {
         Bundle.main.object(forInfoDictionaryKey: "AppReleaseDisplayVersion") as? String
             ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
             ?? "1.0"
-    }
-
-    private func versionLabel(
-        _ version: (beta: Int, publicBeta: Int?, build: String)
-    ) -> String {
-        if let publicBeta = version.publicBeta {
-            return language.text(
-                "settings.developer_public_beta_build",
-                Int64(version.beta),
-                Int64(publicBeta),
-                version.build
-            )
-        }
-        return language.text(
-            "settings.developer_beta_build",
-            Int64(version.beta),
-            version.build
-        )
     }
 
     @ViewBuilder

@@ -72,12 +72,9 @@ See the complete [Patch workspace guide](docs/PATCH_GUIDE.md).
 | iOS 17 | 17.0 through 17.7 (kernel exploit) |
 | iOS 18 | 18.0 through 18.7.1 (kernel exploit) |
 | iOS 26 | 26.0 through 26.6.1 |
-| iOS 27 Developer Beta 1 | `24A5355q` |
-| iOS 27 Developer Beta 2 | `24A5370h` |
-| iOS 27 Developer Beta 3 / Public Beta 1 | `24A5380h` |
-| iOS 27 Developer Beta 4 / Public Beta 2 | `24A5390f` |
+| iOS 27 | 27.x — all builds (beta, RC, final) |
 
-Unlisted iOS 27 builds are marked unsupported rather than assumed compatible. The iOS 17–18 kernel exploit is opt-in (manual button) because a failed exploit attempt may restart the app.
+All iOS 27 builds are allowed. Kernel-exploit offsets are build-specific, so the exploit may fail gracefully on newer builds while other features keep working. The iOS 17–18 kernel exploit is opt-in (manual button) because a failed exploit attempt may restart the app.
 
 ## Installation notes
 
