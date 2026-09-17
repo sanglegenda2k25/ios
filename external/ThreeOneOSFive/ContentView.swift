@@ -274,6 +274,9 @@ private struct DashboardView: View {
                         // MARK: Hero Brand Card
                         heroBrandCard
 
+                        // MARK: Sideload Mode Banner
+                        sideloadBanner
+
                         // MARK: Device Card
                         deviceCard
                     }
@@ -297,6 +300,35 @@ private struct DashboardView: View {
                     }
                 }
             }
+        }
+    }
+
+    // MARK: Sideload Mode Banner
+    @ViewBuilder
+    private var sideloadBanner: some View {
+        if !ExploitSupportPolicy.hasPrivilegedContainerAccess {
+            HStack(spacing: 12) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(.yellow)
+                    .font(.system(size: 18))
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("SIDELOAD MODE")
+                        .font(.system(size: 12, weight: .black))
+                        .kerning(1.2)
+                        .foregroundStyle(.white)
+                    Text("Inject & apply ke aplikasi lain butuh build enterprise. Workspace patch, file, dan log tetap berfungsi.")
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color(white: 0.55))
+                }
+                Spacer()
+            }
+            .padding(14)
+            .background(Color(white: 0.06))
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.yellow.opacity(0.25), lineWidth: 1)
+            )
         }
     }
 

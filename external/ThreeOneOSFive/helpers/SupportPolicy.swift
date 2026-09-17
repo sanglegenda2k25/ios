@@ -35,8 +35,17 @@ enum ExploitSupportPolicy {
         return false
     }
 
-    static func isSupported(major: Int, minor: Int, patch: Int, build: String) -> Bool {
-        if supportsKernelExploit(major: major, minor: minor, patch: patch) {
+    /// True jika app bisa menyentuh container aplikasi lain (identitas MHA
+    /// enterprise atau sandbox escape aktif). Build Sideloadly/cert gratis
+    /// gagal di keduanya — inject/apply ke app lain mati, workspace sendiri hidup.
+    static var hasPrivilegedContainerAccess: Bool {
+        if Bundle.main.bundleIdentifier == "com.apple.mobile.MobileHouseArrest" {
+            return true
+        }
+        return KernelExploit.hasSandboxAccess()
+    }
+
+    static func isSupported(major: Int, minor: Int, patch: Int, build: String) -> Bool {        if supportsKernelExploit(major: major, minor: minor, patch: patch) {
             return true
         }
 
