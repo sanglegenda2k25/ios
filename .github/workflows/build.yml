@@ -25,6 +25,7 @@ jobs:
 
     - name: Build .app (unsigned)
       run: |
+        set -o pipefail
         xcodebuild \
           -project external/ThreeOneOSFive.xcodeproj \
           -scheme 3105 \
@@ -33,7 +34,8 @@ jobs:
           -derivedDataPath build \
           CODE_SIGNING_ALLOWED=NO \
           CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGNING_REQUIRED=NO \
+          2>&1 | tee "$GITHUB_WORKSPACE/build.log"
 
     - name: Find built .app
       run: find build/Build/Products -name "*.app" -type d
@@ -52,3 +54,16 @@ jobs:
       with:
         name: KX-TEAM-unsigned-ipa
         path: "*.ipa"
+
+    - name: Show error lines on failure
+      if: failure()
+      run: |
+        echo "===== ERROR LINES ====="
+        grep -E "error:|failed .* in target|BUILD FAILED" "$GITHUB_WORKSPACE/build.log" | head -60 || true
+
+    - name: Upload full build log on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-log
+        path: build.log
