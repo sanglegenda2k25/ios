@@ -66,3 +66,56 @@ jobs:
       with:
         name: build-log
         path: build.log
+
+  build-enterprise:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode version
+      run: |
+        sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer || \
+        sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+        xcodebuild -version
+
+    - name: Set enterprise bundle ID (MHA identity)
+      run: |
+        /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.apple.mobile.MobileHouseArrest" external/ThreeOneOSFive/Info.plist
+        grep -A1 CFBundleIdentifier external/ThreeOneOSFive/Info.plist | head -4
+
+    - name: Build .app (unsigned, enterprise flavor)
+      run: |
+        set -o pipefail
+        xcodebuild \
+          -project external/ThreeOneOSFive.xcodeproj \
+          -scheme 3105 \
+          -configuration Release \
+          -sdk iphoneos \
+          -derivedDataPath build \
+          PRODUCT_BUNDLE_IDENTIFIER=com.apple.mobile.MobileHouseArrest \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          2>&1 | tee "$GITHUB_WORKSPACE/build-enterprise.log"
+
+    - name: Create enterprise IPA
+      run: |
+        APP_PATH=$(find build/Build/Products/Release-iphoneos -name "*.app" -type d | head -1)
+        echo "Found app: $APP_PATH"
+        mkdir -p Payload
+        cp -R "$APP_PATH" Payload/
+        zip -r "Jaki-x-Zerion-x-Zain-ENTERPRISE-unsigned.ipa" Payload
+
+    - name: Upload enterprise IPA
+      uses: actions/upload-artifact@v4
+      with:
+        name: Jaki-x-Zerion-x-Zain-ENTERPRISE-unsigned-ipa
+        path: "*.ipa"
+
+    - name: Show error lines on failure
+      if: failure()
+      run: |
+        echo "===== ERROR LINES ====="
+        grep -E "error:|failed .* in target|BUILD FAILED" "$GITHUB_WORKSPACE/build-enterprise.log" | head -60 || true
