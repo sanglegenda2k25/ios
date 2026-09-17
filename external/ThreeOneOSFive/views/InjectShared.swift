@@ -43,10 +43,19 @@ enum InjectError: LocalizedError {
 // MARK: - Resolve container helper
 
 func resolveContainer(bundleID: String) throws -> URL {
-    guard let path = ContainerStore.resolveAppContainerPath(bundleID: bundleID) else {
-        throw InjectError.containerNotFound(bundleID)
+    if let path = ContainerStore.resolveAppContainerPath(bundleID: bundleID) {
+        return URL(fileURLWithPath: path, isDirectory: true)
     }
-    return URL(fileURLWithPath: path, isDirectory: true)
+    // Sebab sebenarnya, bukan sekadar "not found": tanpa identitas MHA
+    // (build enterprise) atau sandbox escape aktif, container app lain
+    // memang tidak bisa di-resolve dari sandbox.
+    if Bundle.main.bundleIdentifier != "com.apple.mobile.MobileHouseArrest" {
+        throw InjectError.containerNotFound("\(bundleID) — butuh build enterprise (identitas MHA). Build ini (\(Bundle.main.bundleIdentifier ?? "?")) tidak punya akses container.")
+    }
+    if KernelExploit.requiresSandboxEscape, !KernelExploit.hasSandboxAccess() {
+        throw InjectError.containerNotFound("\(bundleID) — sandbox escape belum aktif. Jalankan exploit dari dashboard dulu.")
+    }
+    throw InjectError.containerNotFound(bundleID)
 }
 
 // MARK: - Shared Console View

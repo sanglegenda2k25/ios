@@ -1,26 +1,22 @@
 import SwiftUI
 
 enum AppTheme {
-    // Accent: blue in all modes
+    // Accent: monochrome — white in dark mode, black in light mode
     static let accent = Color(
-        uiColor: UIColor { _ in
-            UIColor(red: 0.04, green: 0.52, blue: 1.00, alpha: 1.00)  // #0A84FF iOS Blue
+        uiColor: UIColor { traits in
+            traits.userInterfaceStyle == .dark ? .white : .black
         }
     )
-    // Pure black background in dark mode, very dark in light mode
+    // Pure black background in all modes
     static let pageBackground = Color(
-        uiColor: UIColor { traits in
-            traits.userInterfaceStyle == .dark
-                ? UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)  // #000000
-                : UIColor(red: 0.08, green: 0.08, blue: 0.08, alpha: 1.00)  // #141414
+        uiColor: UIColor { _ in
+            UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)  // #000000
         }
     )
-    // Slightly lighter black for console/secondary surfaces (blue-tinted)
+    // Pure black secondary surfaces (neutral, no blue tint)
     static let consoleBackground = Color(
-        uiColor: UIColor { traits in
-            traits.userInterfaceStyle == .dark
-                ? UIColor(red: 0.00, green: 0.00, blue: 0.09, alpha: 1.00)  // #000017 dark blue-black
-                : UIColor(red: 0.02, green: 0.02, blue: 0.12, alpha: 1.00)  // #03031F
+        uiColor: UIColor { _ in
+            UIColor(red: 0.03, green: 0.03, blue: 0.03, alpha: 1.00)  // #080808
         }
     )
     static let pageInset: CGFloat = 16
